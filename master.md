@@ -55,6 +55,31 @@ then all the green ones, then all the blue ones.
 - $b := b - \alpha \frac{dJ(w, b)}{db}$
 - $\alpha$ is called the **Learning Rate**
 
+#### Neural Network Representation
+- Each layer is denoted by $a^{[n]}$ 
+	- $a$ is a column vector representing activations of neurons
+	- The superscript $n$ represents the layer that we are looking at
+- The input layer is denoted $a^{[0]}$
+
+#### Activation Functions
+- Activation functions are denoted $g^{[n]}$
+	- $g$ represents the function
+	- $n$ represents the layer
+- Previously, we used Sigmoid($\sigma$)
+	- Output is always between 0 and 1
+	- Centered on 0.5
+- Tanh is another alternative
+	- Output is always between -1 and 1
+	- Centered on 0
+- Tanh is usually much better except for the output layer for binary activation
+- ReLU = max$(0, z)$
+	- Rectified Linear Unit
+- Leaky ReLU is another option
+- No activation function is called a **linear Activation** function.
+	- Its very uncommon to use a linear activation function.
+	- Sometimes used for the output layer when $y \in \mathbb{R}
+
+
 #### Train/Dev/Test Sets
 - For small datasets, you have to allocate a larger % of examples for testing and validation. 
 	- Ex: 70/30 train/test split
