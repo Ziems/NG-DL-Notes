@@ -77,7 +77,17 @@ then all the green ones, then all the blue ones.
 - Leaky ReLU is another option
 - No activation function is called a **linear Activation** function.
 	- Its very uncommon to use a linear activation function.
-	- Sometimes used for the output layer when $y \in \mathbb{R}
+	- Sometimes used for the output layer when $y \in \mathbb{R}$
+
+#### L-layer Deep Neural Network
+- Forward Pass
+	- $Z^{[\ell]} = W^{[\ell]} \cdot A^{[\ell -1]} + b^{[\ell]}$
+	- $A^{[\ell]} = g^{[\ell]}(Z^{[\ell]})$
+- Backward Pass
+	- $dZ^{[\ell]} = dA^{[\ell]} * g^{[\ell]}`(Z^{[\ell]})$
+	- $dW^{[\ell]} = \frac{1}{m}dZ^{[\ell]} \cdot A^{[\ell -1]T}$
+	- $db^{[\ell]} = \frac{1}{m}$np.sum$(dZ^{[\ell]}$, axis=1$)$
+	- $dA^{[\ell]} = W^{[\ell]T} \cdot dZ^{[\ell]}$
 
 
 #### Train/Dev/Test Sets
