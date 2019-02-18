@@ -87,8 +87,7 @@ then all the green ones, then all the blue ones.
 	- $dZ^{[\ell]} = dA^{[\ell]} * g^{[\ell]}`(Z^{[\ell]})$
 	- $dW^{[\ell]} = \frac{1}{m}dZ^{[\ell]} \cdot A^{[\ell -1]T}$
 	- $db^{[\ell]} = \frac{1}{m}$np.sum$(dZ^{[\ell]}$, axis=1$)$
-	- $dA^{[\ell]} = W^{[\ell]T} \cdot dZ^{[\ell]}$
-
+	- $dA^{[\ell -1]} = W^{[\ell]T} \cdot dZ^{[\ell]}$
 
 #### Train/Dev/Test Sets
 - For small datasets, you have to allocate a larger % of examples for testing and validation. 
@@ -116,12 +115,36 @@ then all the green ones, then all the blue ones.
 	- Regularization
 	- More appropriate architecture
 
-#### Regularization
+####L2 Regularization
 - **L2 Regularization**
 	- *Sum of all the weights squared*
 \begin{align*}
-\lVert w \lVert_{2}^2 = \sum_{j=1}^{N_{x}}w_j^2
+\lVert w \lVert_{2}^2 = \sum_{j=1}^{n_{x}}w_j^2 = w^Tw
 \end{align*}
+
+####Dropout Regularization
+- keep_prob = 0.8
+- d3 = np.random.randn(a3.shape[0], a3.shape[1]) < keep_prob
+- a3 = np.myltiply(a3, d3)
+- a3 /= keep_prob
+	- This is called *Inverted Dropout*
+	- This line ensures that the values are bumped up for the next layer
+
+#### Normalizing Inputs
+- Normalizing Inputs allows us to use larger learning rates because we wont be oscilating back and forth in our loss function
+- Subtract Mean
+	- $\mu = \frac{1}{m} \sum_{i=1}^mx^{(i)}$
+	- $x := x - \mu$
+- Normalize Variance
+	- $\sigma^2 = \frac{1}{m} \sum_{i=1}^m x ** 2$
+		- element-wise squaring
+	- $x /= \sigma^2$
+
+#### Gradient Check
+- Compute the gradient, $d/theta$, then compute the limit of the gradient and compare the two in euclidean distance
+- 10^{-7} is usually considered a fine margin of difference
+- 10^{-5} is questionable but may be fine
+- 10^{-3} is very likely that something is wrong
 
 
 
