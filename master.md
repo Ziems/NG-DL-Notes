@@ -146,5 +146,37 @@ then all the green ones, then all the blue ones.
 - 10^{-5} is questionable but may be fine
 - 10^{-3} is very likely that something is wrong
 
+#### Mini-batch Gradient Descent
+- $t$ denotes the mini-batch index we are using for our dataset
+- $t = 1, 2, \ldots, 5000$ for a dataset split into 5000 batches
+- $Z^{[1]} = W^{[1]}X^{\{t\}} + b^{[1]}$
+- $A^{[1]} = g^{[1]}(Z^{[1]})$
+- $\ldots$ and so on$
+- Cost is then computed by dividing by the size of the batch instead of $\frac{1}{m}$
+- *epoch* is defined as a single pass through the training set
+- Tends to make the cost-graph oscilate a bit
+- Batch size is a hyper-parameter between 64 and 512
+	- Usually a power of 2
+
+#### Batch Gradient Descent
+- Mini-batch Gradient Descent with a batch size of $m$
+- Very large steps
+- Takes too long per iteration
+
+#### Stochastic Gradient Descent(SGD)**
+- Mini-batch Gradient Descent with a batch size of 1
+- Tends to be very noisy and wanders quite a bit
+- Never exactly converges
+- Lose speedup from vectorization
+
+#### Exponentially Weighted Average
+- $V_t = \beta V_{t-1} + (1-\beta)\theta_t$
+- Averages your data over the last $\frac{1}{1-\beta}$ datapoints
+- $\beta$ is usually between 0 and 1
+- Smooths out a pretty noisy graph(like a graph of temperature)
+- The higher the value of $\beta$, the slower it is to react, so keep that in mind
+- the lower the value of $\beta$, the faster it is to react, but the more noisy it gets
+
+
 
 
