@@ -177,6 +177,12 @@ then all the green ones, then all the blue ones.
 - The higher the value of $\beta$, the slower it is to react, so keep that in mind
 - the lower the value of $\beta$, the faster it is to react, but the more noisy it gets
 
+#### Gradient Descent with Momentum
+- $V_{dW} = \beta V_{dW} + (1-\beta)dW$
+- $V_{db} = \beta V_{db} + (1-\beta)db$
+- $W = W - \alpha V_{dW}$
+- $b = b - \alpha V_{db}$
+- You can use momentum to make bigger weight updates at first then smaller updates later on
 
 
 
