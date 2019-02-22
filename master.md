@@ -184,5 +184,24 @@ then all the green ones, then all the blue ones.
 - $b = b - \alpha V_{db}$
 - You can use momentum to make bigger weight updates at first then smaller updates later on
 
+#### Learning Rate Decay
+- Decreasing the learning rate as time goes on, so fewer and fewer steps are being made
+- Helps convergence at the end while having big steps at the beginning
+- $\alpha = \frac{1}{1+\text{decay-rate}} * \text{epoch-num} \alpha_{0}$
+- The learning rate becomes a function of the epoch number
 
+#### Hyperparameter Tuning
+- Start with learning rate $\alpha$
+- Then try momentum $\beta$
+- Then try # hidden units
+- Then try mini batch size
+- Lastly, try # of layers and the learning rate decay.
+- Use random values. Do not use a _grid_
+- Use logarithmic scale to make sure you are focusing resources where they are most likely best
+- $r = -4 * $ np.random.rand() which makes $r \in [-4, 0]$
+- $\alpha = 10^r$
+- Try to train multiple models at once and cull them as they become clearly bad
+	- The _caviar_ approach
+- Train one model at a time and fidget with settings till you get it right
+	- The _panda_ approach
 
