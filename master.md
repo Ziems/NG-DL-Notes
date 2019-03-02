@@ -205,3 +205,15 @@ then all the green ones, then all the blue ones.
 - Train one model at a time and fidget with settings till you get it right
 	- The _panda_ approach
 
+####Batch Normalization
+- Normalizing $Z$ to speed up learning
+
+####Softmax Regression for Multi-class Classificiation
+- $C$ is used to denote the number of classes
+- $n^{[L]} = C$
+	- The output layer has C nodes
+- $n^{[L]}_i = P(y = i|x)$
+- $\sum_{i=0}^{n^{[L]}} n^{[L]}_i = 1$
+	- The probabilities all sum to 1
+- Softmax Activation: $a^{[L]}_i = \frac{e^{Z^{[L]}}}{\sum_{j=1}^{n^{[L]}}e^{Z^{[L]}}}$
+
