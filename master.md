@@ -218,7 +218,7 @@ then all the green ones, then all the blue ones.
 - Softmax Activation: $a^{[L]}_i = \frac{e^{Z^{[L]}}}{\sum_{j=1}^{n^{[L]}}e^{Z^{[L]}}}$
 
 ####Convolutional Nets
-- Given an $n \times n$ image and an $f \time f$ filter, the output is $n-f+1$
+- Given an $n \times n$ image and an $f \times f$ filter, the output is $n-f+1$
 	- $6 \times 6$ image with a $3 \times 3$ filter becomes $4 \times 4$
 - Padding adds zeros to the edges of an image to expose the filters to the edges more
 - With padding, our output becomes $n + 2p + 1 \times n + 2p + 1$
@@ -226,4 +226,16 @@ then all the green ones, then all the blue ones.
 - A *same* convolution adds padding such that the output size has the same dimenions as the input size
 - Each filter has an R sub-fitler, a G sub-filter, and a B sub-filter
 - A filter with 3 channels still outputs a $n + 2p + 1 \times n + 2p + 1$ matrix
+
+####Conv Net Notation
+- $f^{[\ell]}$ = filter size
+- $p^{[\ell]}$ = padding
+- $s^{[\ell]}$ = stride
+- $n^{[\ell]}_c$ = number of filters
+- Input: $n^{[\ell -1]}_H \times n^{[\ell -1]}_W \times n^{[\ell -1]}_c$ where $c$ stands for channels
+- Output: $n^{[\ell]}_H \times n^{[\ell]}_W \times n^{[\ell]}_c$
+- Each filter is: $f^{[\ell]} \times f^{[\ell]} \times n^{[\ell -1]}_c$
+- Activations: $a^{[\ell]} \rightarrow n^{[\ell]}_H \times n^{[\ell]}_W \times n^{[\ell]}_c$
+	- Vectorized: $A^{[\ell]} \rightarrow m \times n^{[\ell]}_H \times n^{[\ell]}_W \times n^{[\ell]}_c$
+- Weights: $^{[\ell]} \times f^{[\ell]} \times n^{[\ell -1]}_c \times n^{[\ell]}_c$
 
