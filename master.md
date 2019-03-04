@@ -217,3 +217,13 @@ then all the green ones, then all the blue ones.
 	- The probabilities all sum to 1
 - Softmax Activation: $a^{[L]}_i = \frac{e^{Z^{[L]}}}{\sum_{j=1}^{n^{[L]}}e^{Z^{[L]}}}$
 
+####Convolutional Nets
+- Given an $n \times n$ image and an $f \time f$ filter, the output is $n-f+1$
+	- $6 \times 6$ image with a $3 \times 3$ filter becomes $4 \times 4$
+- Padding adds zeros to the edges of an image to expose the filters to the edges more
+- With padding, our output becomes $n + 2p + 1 \times n + 2p + 1$
+- A *valid* convolution has no padding
+- A *same* convolution adds padding such that the output size has the same dimenions as the input size
+- Each filter has an R sub-fitler, a G sub-filter, and a B sub-filter
+- A filter with 3 channels still outputs a $n + 2p + 1 \times n + 2p + 1$ matrix
+
