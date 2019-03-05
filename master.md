@@ -237,5 +237,44 @@ then all the green ones, then all the blue ones.
 - Each filter is: $f^{[\ell]} \times f^{[\ell]} \times n^{[\ell -1]}_c$
 - Activations: $a^{[\ell]} \rightarrow n^{[\ell]}_H \times n^{[\ell]}_W \times n^{[\ell]}_c$
 	- Vectorized: $A^{[\ell]} \rightarrow m \times n^{[\ell]}_H \times n^{[\ell]}_W \times n^{[\ell]}_c$
-- Weights: $^{[\ell]} \times f^{[\ell]} \times n^{[\ell -1]}_c \times n^{[\ell]}_c$
+- Weights: $f^{[\ell]} \times f^{[\ell]} \times n^{[\ell -1]}_c \times n^{[\ell]}_c$
+
+####Max Pooling
+- A conv filter that takes the highest value it is exposed to
+- lowers $n^{[\ell + 1]}$ for faster training
+- Usually no padding on max pooling layers
+- $n^{[\ell]}_c = n^{[\ell -1]}_c$ for pooling because pooling is done on each channel
+	- In other words, pooling doesnt reduce channels, only the $H$ and $W$ of each channel
+- No parameters are learned from pooling
+
+####1 $\times$ 1 Convolutions
+- Used to shrink $n^{[\ell]}_c$
+- Similar to how Max Pooling shrinks $n^{[\ell]}_H and n^{[\ell]}_W$
+
+####Inception Network
+- Motivation: Why chose one when you can have all?
+- Keep the $n^{[\ell]}_H$ and $n^{[\ell]}_W$ the same, but change the $n^{[\ell]}_c$
+- Instead of using one size filter for the entire output, you do both and make sure they have the same $H$ and $W$
+- Stacking channels together when the channels dont match
+
+####Classification with Localization
+- A regular network will output a softmax classification for every $n^{[L]}$
+- For classification with localization, $n^{[L]}$ = # classes $+ 5$
+- We add 4 more nodes to the output: $b_x, b_y, b_w, b_h, P_c$ where each of these $\in \mathbb{R}$ between 0 and 1
+- $P_c$ gives us the probability that there is an object in the picture that fits in one of the classifications
+- In this case, the loss is normal when $P_c$ is 1 and just looks at $P_c$ when the true value of it is 0
+
+####Landmark Detection
+- Similar to localization, but this time we just have it output key points on a picture
+- $n^{[L]}$ becomes $2*$num features $+1$
+- There is always one neuron to tell if the object its looking for is there or not
+- Used for identifying key parts of a face or a pose
+
+####Sliding Window Detection
+- Teach binary classifier to identify if a car is in a closely cropped image or not
+- Takes small sliding window and drag it across an image, running each window through your binary classifier
+- Repeat with a larger window
+- Wherever the binary classifier is sufficiently close to 1, we say there is a car there
+- Very very computationally intensive
+
 
