@@ -277,4 +277,11 @@ then all the green ones, then all the blue ones.
 - Wherever the binary classifier is sufficiently close to 1, we say there is a car there
 - Very very computationally intensive
 
+####Evaluating Object Localization
+- Intersection over union
+- Area of intersection divided by area of union
+- "Correct" if IoU $/ge 0.5$
 
+#### Siamese Networks
+- Run the same network on two different pictures that output 128 "features"
+- Compare these features by squaring the difference of each element, then sum them.
